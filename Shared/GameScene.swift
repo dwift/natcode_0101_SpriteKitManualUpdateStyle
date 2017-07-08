@@ -98,6 +98,7 @@ class GameScene: SKScene {
     
     override func update(_ currentTime: TimeInterval) {
         // Called before each frame is rendered
+        ball?.position.x = (ball?.position.x)! + 1
     }
 }
 
