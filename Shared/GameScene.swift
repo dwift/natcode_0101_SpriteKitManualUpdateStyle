@@ -22,6 +22,7 @@ class GameScene: SKScene {
     
     class func newGameScene() -> GameScene {
         // Load 'GameScene.sks' as an SKScene.
+        //Can also manually create
         guard let scene = SKScene(fileNamed: "GameScene") as? GameScene else {
             print("Failed to load GameScene.sks")
             abort()
@@ -35,6 +36,8 @@ class GameScene: SKScene {
     func setUpScene() {
         // Get label node from scene and store it for use later
         //self.stage = self.childNode(withName: "//stage") as? SKShapeNode
+        
+        // Create stage bounding box. Did this manually because one created in scene rendered weird
         let s = (self.size.width + self.size.height) * 0.33
         self.stage = SKShapeNode.init(rectOf: CGSize.init(width: s, height: s), cornerRadius: s * 0.015)
         self.stage?.strokeColor = SKColor(colorLiteralRed: 0.6, green: 0.6, blue: 0.6, alpha: 1)
@@ -49,6 +52,10 @@ class GameScene: SKScene {
         // Create shape node to use during mouse interaction
         let w = (self.size.width + self.size.height) * 0.05
         self.ball = SKShapeNode.init(rectOf: CGSize.init(width: w, height: w), cornerRadius: w * 0.5)
+        ball?.position = CGPoint(x: 0.0, y: 0.0)
+        ball?.strokeColor = SKColor.red
+        //Should I add the ball to the stage or to the scene?
+        self.stage!.addChild(ball!)
         
 //        if let spinnyNode = self.ball {
 //            spinnyNode.lineWidth = 4.0
