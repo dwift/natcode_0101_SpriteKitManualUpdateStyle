@@ -18,6 +18,8 @@ class GameScene: SKScene {
     
     fileprivate var stage : SKShapeNode?
     fileprivate var ball : SKShapeNode?
+    fileprivate let ballColor = SKColor(colorLiteralRed: 0.270271, green: 0.451499, blue: 0.616321, alpha: 1)
+    fileprivate var ballVector:CGVector = CGVector(dx:1.0, dy:3.0)
 
     
     class func newGameScene() -> GameScene {
@@ -53,29 +55,9 @@ class GameScene: SKScene {
         let w = (self.size.width + self.size.height) * 0.05
         self.ball = SKShapeNode.init(rectOf: CGSize.init(width: w, height: w), cornerRadius: w * 0.5)
         ball?.position = CGPoint(x: 0.0, y: 0.0)
-        ball?.strokeColor = SKColor.red
+        ball?.fillColor = ballColor
         //Should I add the ball to the stage or to the scene?
         self.stage!.addChild(ball!)
-        
-//        if let spinnyNode = self.ball {
-//            spinnyNode.lineWidth = 4.0
-//            spinnyNode.run(SKAction.repeatForever(SKAction.rotate(byAngle: CGFloat(Double.pi), duration: 1)))
-//            spinnyNode.run(SKAction.sequence([SKAction.wait(forDuration: 0.5),
-//                                              SKAction.fadeOut(withDuration: 0.5),
-//                                              SKAction.removeFromParent()]))
-//            
-//            #if os(watchOS)
-//                // For watch we just periodically create one of these and let it spin
-//                // For other platforms we let user touch/mouse events create these
-//                spinnyNode.position = CGPoint(x: 0.0, y: 0.0)
-//                spinnyNode.strokeColor = SKColor.red
-//                self.run(SKAction.repeatForever(SKAction.sequence([SKAction.wait(forDuration: 2.0),
-//                                                                   SKAction.run({
-//                                                                       let n = spinnyNode.copy() as! SKShapeNode
-//                                                                       self.addChild(n)
-//                                                                   })])))
-//            #endif
-//        }
     }
     
     #if os(watchOS)
@@ -87,19 +69,54 @@ class GameScene: SKScene {
         self.setUpScene()
     }
     #endif
-
-//    func makeSpinny(at pos: CGPoint, color: SKColor) {
-//        if let spinny = self.ball?.copy() as! SKShapeNode? {
-//            spinny.position = pos
-//            spinny.strokeColor = color
-//            self.addChild(spinny)
-//        }
-//    }
     
     override func update(_ currentTime: TimeInterval) {
         // Called before each frame is rendered
-        ball?.position.x = (ball?.position.x)! + 1
+        //ball?.position.x = (ball?.position.x)! + 1
+        move(item: ball!, vector: ballVector)
+        ballVector = getUpdatedVectorInCaseOfBoundsCollision(ballVector)
     }
+    
+    //MARK: Behaviors
+    func move(item:SKShapeNode, vector:CGVector) {
+        let calculatedPosition = applyVector(startPosition: item.position, vector: vector)
+        
+        //turn off implicit layer animations by using transaction
+        //necessary so can do the reset jump
+        CATransaction.begin()
+        CATransaction.setDisableActions(true)
+        item.position = calculatedPosition
+        CATransaction.commit()
+        
+    }
+    
+    func getUpdatedVectorInCaseOfBoundsCollision(_ vector:CGVector) -> CGVector {
+        
+        //seed with current value
+        var newVector = vector
+        let stageFrame = self.stage?.frame
+        
+        
+        //bounds detection
+        if (((ball!.position.x) >= (stageFrame!.maxX)) || (ball!.position.x <= (stageFrame!.minX))) {
+            newVector.dx = vector.dx * -1;
+        }
+        if (((ball!.position.y) >= (stageFrame!.maxY)) || (ball!.position.y <= (stageFrame!.minY))) {
+            newVector.dy = vector.dy * -1;
+        }
+        
+        return newVector
+    }
+    
+    func applyVector(startPosition:CGPoint, vector:CGVector) -> CGPoint {
+        let deltaX:CGFloat = vector.dx
+        let deltaY:CGFloat = vector.dy
+        let newPoint:CGPoint = CGPoint(x: startPosition.x+deltaX, y: startPosition.y+deltaY)
+        return newPoint
+    }
+    
+    
+    
 }
 
 #if os(iOS) || os(tvOS)
@@ -159,4 +176,6 @@ extension GameScene {
 
 }
 #endif
+
+
 
