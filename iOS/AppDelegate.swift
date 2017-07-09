@@ -3,7 +3,7 @@
 //  natcode_0101_SpriteKitCrossPlatform
 //
 //  Created by Carlyn Maw on 7/8/17.
-//  Copyright © 2017 carlynorama. All rights reserved.
+//  Copyright © 2017 carlynorama. No rights reserved.
 //
 
 import UIKit
