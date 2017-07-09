@@ -11,14 +11,12 @@
 		D2F4CCD21F115900001EF02D /* GameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2F4CCD11F115900001EF02D /* GameViewController.swift */; };
 		D2F4CCD51F115900001EF02D /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D2F4CCD31F115900001EF02D /* Main.storyboard */; };
 		D2F4CCD81F115900001EF02D /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D2F4CCD61F115900001EF02D /* LaunchScreen.storyboard */; };
-		D2F4CCDA1F115900001EF02D /* Actions.sks in Resources */ = {isa = PBXBuildFile; fileRef = D2F4CCC41F115900001EF02D /* Actions.sks */; };
 		D2F4CCDB1F115900001EF02D /* GameScene.sks in Resources */ = {isa = PBXBuildFile; fileRef = D2F4CCC51F115900001EF02D /* GameScene.sks */; };
 		D2F4CCDC1F115900001EF02D /* GameScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2F4CCC61F115900001EF02D /* GameScene.swift */; };
 		D2F4CCDD1F115900001EF02D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D2F4CCC71F115900001EF02D /* Assets.xcassets */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		D2F4CCC41F115900001EF02D /* Actions.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = Actions.sks; sourceTree = "<group>"; };
 		D2F4CCC51F115900001EF02D /* GameScene.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = GameScene.sks; sourceTree = "<group>"; };
 		D2F4CCC61F115900001EF02D /* GameScene.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameScene.swift; sourceTree = "<group>"; };
 		D2F4CCC71F115900001EF02D /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -53,7 +51,6 @@
 		D2F4CCC31F115900001EF02D /* Shared */ = {
 			isa = PBXGroup;
 			children = (
-				D2F4CCC41F115900001EF02D /* Actions.sks */,
 				D2F4CCC51F115900001EF02D /* GameScene.sks */,
 				D2F4CCC61F115900001EF02D /* GameScene.swift */,
 				D2F4CCC71F115900001EF02D /* Assets.xcassets */,
@@ -143,7 +140,6 @@
 			files = (
 				D2F4CCDB1F115900001EF02D /* GameScene.sks in Resources */,
 				D2F4CCD51F115900001EF02D /* Main.storyboard in Resources */,
-				D2F4CCDA1F115900001EF02D /* Actions.sks in Resources */,
 				D2F4CCD81F115900001EF02D /* LaunchScreen.storyboard in Resources */,
 				D2F4CCDD1F115900001EF02D /* Assets.xcassets in Resources */,
 			);
